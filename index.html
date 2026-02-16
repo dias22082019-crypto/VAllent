@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Валентин күніне шақыру</title>
+    <style>
+        body { background-color: #ffc8fd; font-family: 'Comic Sans MS', cursive; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .container { text-align: center; }
+        h1 { color: #ff6b6b; font-size: 2.5em; margin-bottom: 20px; }
+        input { padding: 10px; margin: 5px; font-size: 1.2em; border-radius: 10px; border: none; }
+        button { padding: 10px 20px; margin-top: 10px; border: none; border-radius: 20px; cursor: pointer; background-color: #ff6b6b; color: white; font-size: 1.2em; }
+        #linkField { width: 80%; padding: 10px; font-size: 1.2em; text-align: center; border: 1px solid #ccc; border-radius: 10px; margin-top: 10px; background-color: #f0f0f0; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Есімдерді енгізіңіз</h1>
+        <input type="text" id="yourName" placeholder="Сіздің есіміңіз">
+        <input type="text" id="baeName" placeholder="Сүйіктіңіздің есімі">
+        <br>
+        <button onclick="generateLink()">Сілтеме жасау</button>
+        <p>Сілтемені сүйіктіңізге жіберіңіз:</p>
+        <input type="text" id="linkField" readonly>
+        <br>
+        <button onclick="copyLink()">Сілтемені көшіру</button>
+    </div>
+
+    <script>
+        function generateLink() {
+            const yourName = document.getElementById('yourName').value;
+            const baeName = document.getElementById('baeName').value;
+            if (yourName && baeName) {
+                // МҰНДА СІЗДІҢ ЖЕКЕ СІЛТЕМЕҢІЗ ОРНАТЫЛДЫ:
+                const link = `https://dias22082019-crypto.github.io/VAllent/valentine.html?from=${encodeURIComponent(yourName)}&to=${encodeURIComponent(baeName)}`;
+                document.getElementById('linkField').value = link;
+            } else {
+                alert('Өтінемін, екі есімді де толтырыңыз!');
+            }
+        }
+
+        function copyLink() {
+            const linkField = document.getElementById('linkField');
+            if (linkField.value) {
+                navigator.clipboard.writeText(linkField.value).then(() => {
+                    alert('Сілтеме көшірілді!');
+                });
+            }
+        }
+    </script>
+</body>
+</html>
